@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A/L ICT සටහන් - පද්ධති කළමනාකරණය, දත්ත සමුදාය, ජාල, IoT, විද්‍යුත් වාණිජ්‍යය, වෙබ් සංවර්ධනය සහ Python</title>
+    <style>
+        /* Base styles – PDF‑like with light blue & white */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef4fa;
+            font-family: 'Iskoola Pota', 'FM Abhaya', 'Sinhala MN', 'Noto Sans Sinhala', sans-serif;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .paper {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 20, 40, 0.12);
+            border-radius: 12px;
+            padding: 40px 45px 50px;
+            border: 1px solid #d6e3f0;
+            line-height: 1.6;
+            color: #1a2a3a;
+        }
+
+        /* headings */
+        h1 {
+            font-size: 28px;
+            text-align: center;
+            color: #0a2a4a;
+            border-bottom: 3px solid #b6d4f0;
+            padding-bottom: 14px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #0e3b5e;
+            background: #e1edfa;
+            padding: 8px 16px;
+            border-radius: 8px;
+            margin: 32px 0 16px 0;
+            border-left: 6px solid #6ea3d9;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #1a4a6e;
+            margin: 22px 0 10px 0;
+            padding-left: 6px;
+            border-bottom: 1px dashed #b6d4f0;
+            padding-bottom: 4px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #1f4f7a;
+            margin: 18px 0 6px 0;
+            font-weight: 600;
+        }
+
+        /* paragraphs & lists */
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            margin: 8px 0 14px 28px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* tables – clean, light blue */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0 22px;
+            font-size: 15px;
+            background: #f8fbfe;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        th {
+            background: #c8def5;
+            color: #0a2a4a;
+            font-weight: 600;
+            padding: 10px 12px;
+            border: 1px solid #b0cce5;
+            text-align: center;
+        }
+
+        td {
+            padding: 8px 12px;
+            border: 1px solid #d0e0ef;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) td {
+            background: #f5f9ff;
+        }
+
+        /* block highlights */
+        .highlight-box {
+            background: #f0f7fe;
+            border-left: 5px solid #5b9bd5;
+            padding: 12px 18px;
+            margin: 16px 0;
+            border-radius: 6px;
+        }
+
+        .def {
+            background: #e9f2fa;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        .code-block {
+            background: #edf3fa;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border: 1px solid #c8dcec;
+            margin: 12px 0;
+            color: #0a2a3a;
+        }
+
+        .sub-topic {
+            background: #f6faff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a5276;
+            margin-bottom: 6px;
+            border: 1px solid #b6d4f0;
+        }
+
+        /* page-like spacing */
+        .section-spacer {
+            margin-top: 32px;
+            border-top: 2px solid #d6e6f5;
+            padding-top: 8px;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .paper {
+                padding: 20px 16px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            h2 {
+                font-size: 19px;
+            }
+            table {
+                font-size: 14px;
+            }
+            th,
+            td {
+                padding: 6px 8px;
+            }
+            ul,
+            ol {
+                margin-left: 18px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .paper {
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                padding: 30px 35px;
+            }
+            .code-block {
+                background: #f2f6fc;
+                border: 1px solid #b0cce5;
+            }
+        }
+
+        /* extra utility */
+        .small-meta {
+            color: #3d6b8f;
+            font-size: 14px;
+            border-bottom: 1px solid #d6e3f0;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+        }
+
+        .topic-badge {
+            background: #d4e6f7;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #0a2a4a;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        /* list styling */
+        .styled-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .styled-list li::before {
+            content: "• ";
+            color: #2d7bb6;
+            font-weight: bold;
+        }
+        .styled-list li {
+            padding-left: 4px;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="paper">
+
+        <!-- ==================== TITLE ==================== -->
+        <h1>උසස් පෙළ තොරතුරු හා සන්නිවේදන තාක්ෂණය</h1>
+        <p style="text-align:center; font-size:17px; color:#1a4a6e; margin-top:-8px; border-bottom:1px solid #c8def5; padding-bottom:12px;">
+            <span class="topic-badge">පද්ධති කළමනාකරණය</span>
+            <span class="topic-badge">දත්ත සමුදාය</span>
+            <span class="topic-badge">ජාලකරණය</span>
+            <span class="topic-badge">IoT</span>
+            <span class="topic-badge">විද්‍යුත් වාණිජ්‍යය</span>
+            <span class="topic-badge">වෙබ් සංවර්ධනය</span>
+            <span class="topic-badge">Python</span>
+        </p>
+
+        <!-- ============================================================ -->
+        <!-- ============= 1. පද්ධති කළමනාකරණය (OS) ================= -->
+        <!-- ============================================================ -->
+
+        <h2>1. පද්ධති කළමනාකරණය – මෙහෙයුම් පද්ධති (Operating Systems)</h2>
+
+        <div class="small-meta">ඒකකය 05 – මෙහෙයුම් පද්ධති පිළිබඳ මූලික සංකල්ප හා කළමනාකරණය</div>
+
+        <h3>1.1 මෙහෙයුම් පද්ධතියක් යනු කුමක්ද?</h3>
+        <p>මෙහෙයුම් පද්ධතියක් (Operating System – OS) යනු පරිගණකයේ දෘඩාංග හා මෘදුකාංග අතර අතුරු මුහුණතක් ලෙස ක්‍රියා කරන පද්ධති මෘදුකාංගයකි. එය පරිශීලකයාට පරිගණකය පහසුවෙන් භාවිත කිරීමට මෙන්ම යෙදුම් මෘදුකාංග ක්‍රියාත්මක කිරීමට පදනම සපයයි.</p>
+
+        <div class="highlight-box">
+            <strong>ප්‍රධාන කාර්යයන්:</strong>
+            <ul>
+                <li>අතුරු මුහුණත් (Interfaces) ලබා දීම</li>
+                <li>ක්‍රියාවලි කළමනාකරණය (Process Management)</li>
+                <li>මතක කළමනාකරණය (Memory Management)</li>
+                <li>ගොනු පද්ධති කළමනාකරණය (File System Management)</li>
+                <li>උපාංග කළමනාකරණය (Device Management)</li>
+                <li>ආරක්ෂාව හා ආරක්ෂණය (Security &amp; Protection)</li>
+            </ul>
+        </div>
+
+        <h3>1.2 මෙහෙයුම් පද්ධති වර්ගීකරණය</h3>
+        <ul>
+            <li><strong>ඒක පරිශීලක – ඒක කාර්ය (Single-user – Single task):</strong> එකවර එක් පරිශීලකයෙකුට පමණක් එක් කාර්යයක් කිරීමට ඉඩ සලසයි. (උදා: MS-DOS)</li>
+            <li><strong>ඒක පරිශීලක – බහු කාර්ය (Single-user – Multi task):</strong> එක් පරිශීලකයෙකුට එකවර කාර්ය කිහිපයක් කිරීමට ඉඩ සලසයි. (උදා: Windows, macOS)</li>
+            <li><strong>බහු පරිශීලක – බහු කාර්ය (Multi-user – Multi task):</strong> පරිශීලකයන් කිහිප දෙනෙකුට එකවර කාර්ය කිහිපයක් කිරීමට ඉඩ සලසයි. (උදා: Linux, Unix, Windows Server)</li>
+            <li><strong>තත්‍ය කාලීන (Real-time):</strong> කාර්යයන් නිශ්චිත කාල සීමාවන් තුළ සම්පූර්ණ කිරීමට නිර්මාණය කර ඇත. (උදා: ගුවන් ගමන් පාලන පද්ධති)</li>
+            <li><strong>කාල විභජන (Time-sharing):</strong> බහු පරිශීලකයන්ට කාල කොටස් බෙදා දී පරිගණකය බෙදා ගැනීමට ඉඩ සලසයි.</li>
+        </ul>
+
+        <h3>1.3 ක්‍රියාවලි කළමනාකරණය (Process Management)</h3>
+        <p>ක්‍රියාවලියක් යනු ක්‍රියාත්මක වන වැඩසටහනකි. මෙහෙයුම් පද්ධතිය ක්‍රියාවලි තත්ත්ව (Process States) කළමනාකරණය කරයි: <strong>නව (New), සූදානම් (Ready), ක්‍රියාත්මක (Running), අවහිර (Blocked), අවසන් (Terminated)</strong>.</p>
+
+        <ul>
+            <li><strong>ක්‍රියාවලි පාලන බ්ලොක් (PCB):</strong> එක් එක් ක්‍රියාවලිය පිළිබඳ තොරතුරු ගබඩා කරන ව්‍යුහය.</li>
+            <li><strong>සන්දර්භ මාරුව (Context Switching):</strong> එක් ක්‍රියාවලියක සිට තවත් ක්‍රියාවලියකට CPU මාරු කිරීම.</li>
+            <li><strong>උපලේඛනගත කිරීම (Scheduling):</strong> ක්‍රියාවලි උපලේඛනගත කිරීමේ ප්‍රතිපත්ති (FCFS, SJF, Round Robin, Priority Scheduling).</li>
+        </ul>
+
+        <h3>1.4 මතක කළමනාකරණය (Memory Management)</h3>
+        <ul>
+            <li><strong>භෞතික මතකය (Physical Memory) :</strong> RAM හි ඇති සැබෑ මතක ස්ථාන.</li>
+            <li><strong>අතාත්වික මතකය (Virtual Memory):</strong> දෘඪ තැටියේ කොටසක් මතකයක් ලෙස භාවිත කිරීම (Paging, Segmentation).</li>
+            <li><strong>මතක කළමනාකරණ ඒකකය (MMU):</strong> අතාත්වික ලිපින භෞතික ලිපින බවට පරිවර්තනය කරයි.</li>
+        </ul>
+
+        <h3>1.5 ගොනු පද්ධති කළමනාකරණය (File System Management)</h3>
+        <ul>
+            <li>ගොනු (Files) සහ නාමාවලි (Directories) කළමනාකරණය.</li>
+            <li>ගොනු වර්ග: .exe, .jpg, .txt, .docx, .pdf ආදිය.</li>
+            <li>ගොනු ධූරාවලිය (File Hierarchy) – මූල නාමාවලියෙන් ආරම්භ වන ව්‍යුහය.</li>
+            <li>ගොනු පද්ධති: FAT, NTFS, ext4 ආදිය.</li>
+            <li>ගොනු ආරක්ෂාව: මුරපද, ප්‍රවේශ අවසර (Read, Write, Execute).</li>
+            <li>ඛණ්ඩනය (Defragmentation) – ගොනු කොටස් යාබදව තැබීමෙන් කාර්ය සාධනය වැඩි දියුණු කිරීම.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>වැදගත්:</strong> මෙහෙයුම් පද්ධතිය උපාංග ධාවක (Device Drivers) මගින් ආදාන/ප්‍රතිදාන උපාංග කළමනාකරණය කරයි. එසේම Spooling (උපාංග සමගාමී කිරීම) මගින් මුද්‍රණ යන්ත්‍ර වැනි උපාංග කාර්යක්ෂමව භාවිත කරයි.
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ============= 2. දත්ත සමුදාය කළමනාකරණය ================= -->
+        <!-- ============================================================ -->
+
+        <h2>2. දත්ත සමුදාය කළමනාකරණය (Database Management)</h2>
+        <div class="small-meta">ඒකකය 08 – දත්ත සමුදා පද්ධති සැලසුම් හා සංවර්ධනය</div>
+
+        <h3>2.1 දත්ත සමුදායක් යනු කුමක්ද?</h3>
+        <p>දත්ත සමුදායක් (Database) යනු ක්‍රමානුකූලව සංවිධානය කරන ලද දත්ත සමූහයකි. දත්ත සමුදා කළමනාකරණ පද්ධතිය (DBMS) මගින් දත්ත ගබඩා කිරීම, ප්‍රවේශ වීම, යාවත්කාලීන කිරීම සහ කළමනාකරණය කිරීම සිදු කෙරේ.</p>
+
+        <h3>2.2 දත්ත සමුදා ආකෘති (Database Models)</h3>
+        <ul>
+            <li><strong>Flat-file:</strong> සරල ගොනු පද්ධතියක් ලෙස දත්ත ගබඩා කිරීම.</li>
+            <li><strong>ධූරාවලි ආකෘතිය (Hierarchical):</strong> ගසක් වැනි ව්‍යුහයක් – එක්-බොහෝ සම්බන්ධතා.</li>
+            <li><strong>ජාල ආකෘතිය (Network):</strong> බොහෝ-බොහෝ සම්බන්ධතා සහිත වඩාත් සංකීර්ණ ව්‍යුහය.</li>
+            <li><strong>සම්බන්ධතා ආකෘතිය (Relational):</strong> වගු (Tables) මගින් දත්ත නිරූපණය කරයි. (වඩාත් ජනප්‍රිය)</li>
+            <li><strong>වස්තු-සම්බන්ධතා ආකෘතිය (Object-Relational):</strong> වස්තු සහ සම්බන්ධතා යන දෙකම භාවිත කරයි.</li>
+        </ul>
+
+        <h3>2.3 ER ආකෘතිය (Entity-Relationship Model)</h3>
+        <ul>
+            <li><strong>ආයතන (Entities):</strong> තථ්‍ය ලෝකයේ වස්තුවක් හෝ සංකල්පයක්. (උදා: ශිෂ්‍යයා, පාඨමාලාව)</li>
+            <li><strong>ගුණාංග (Attributes):</strong> ආයතනයක ගුණාංග. (උදා: ශිෂ්‍ය ID, නම)</li>
+            <li><strong>සම්බන්ධතා (Relationships):</strong> ආයතන අතර සම්බන්ධතා. (උදා: ශිෂ්‍යයා පාඨමාලාවක් හදාරයි)</li>
+            <li><strong>ගණනීයතාව (Cardinality):</strong> සම්බන්ධතාවයේ ප්‍රමාණාත්මක බව. (1:1, 1:M, M:N)</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>ER සටහනක් (ER Diagram):</strong> ආයතන, ගුණාංග සහ සම්බන්ධතා ග්‍රාෆිකව නිරූපණය කරයි. එය සම්බන්ධතා ආකෘතියක් බවට පරිවර්තනය කළ හැක.
+        </div>
+
+        <h3>2.4 සම්බන්ධතා ආකෘතිය (Relational Model)</h3>
+        <ul>
+            <li><strong>වගු (Tables) / සම්බන්ධතා (Relations):</strong> දත්ත ගබඩා කරන ප්‍රධාන ඒකක.</li>
+            <li><strong>පේළි (Tuples):</strong> වගුවේ ඇති එක් එක් වාර්තාව.</li>
+            <li><strong>තීරු (Attributes):</strong> වගුවේ ඇති එක් එක් ක්ෂේත්‍රය.</li>
+            <li><strong>යතුරු (Keys):</strong>
+                <ul>
+                    <li><strong>ප්‍රාථමික යතුර (Primary Key):</strong> වාර්තාව අනන්‍යව හඳුනා ගනී.</li>
+                    <li><strong>විදේශ යතුර (Foreign Key):</strong> වෙනත් වගුවක ප්‍රාථමික යතුර හඳුනා ගනී.</li>
+                    <li><strong>අපේක්ෂක යතුර (Candidate Key):</strong> ප්‍රාථමික යතුර වීමට සුදුසු යතුරු.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>2.5 SQL (Structured Query Language)</h3>
+        <ul>
+            <li><strong>DDL (Data Definition Language):</strong> වගු නිර්මාණය, වෙනස් කිරීම, මකා දැමීම.
+                <br><span class="def">CREATE TABLE, ALTER TABLE, DROP TABLE, CREATE DATABASE, DROP DATABASE</span></li>
+            <li><strong>DML (Data Manipulation Language):</strong> දත්ත ඇතුළත් කිරීම, යාවත්කාලීන කිරීම, මකා දැමීම, තෝරා ගැනීම.
+                <br><span class="def">INSERT INTO, UPDATE, DELETE, SELECT</span></li>
+            <li><strong>SELECT විමසුම්:</strong> WHERE, ORDER BY, JOIN (INNER JOIN, LEFT JOIN), GROUP BY, HAVING.</li>
+        </ul>
+
+        <div class="code-block">
+            -- උදා: වගු නිර්මාණය
+            CREATE TABLE ශිෂ්‍ය (
+            ශිෂ්‍ය_ID INT PRIMARY KEY,
+            නම VARCHAR(50) NOT NULL,
+            ලිපිනය VARCHAR(100)
+            );
+
+            -- දත්ත ඇතුළත් කිරීම
+            INSERT INTO ශිෂ්‍ය VALUES (1, 'අමරා', 'කොළඹ');
+
+            -- දත්ත තෝරා ගැනීම
+            SELECT * FROM ශිෂ්‍ය WHERE නම LIKE 'අ%';
+        </div>
+
+        <h3>2.6 සාමාන්‍යකරණය (Normalization)</h3>
+        <ul>
+            <li><strong>අවශ්‍යතාව:</strong> අතිරික්ත දත්ත අවම කිරීම, යාවත්කාලීන විෂමතා (Update Anomalies) මඟහැරීම.</li>
+            <li><strong>පළමු සාමාන්‍ය ආකාරය (1NF):</strong> එක් එක් ක්ෂේත්‍රයේ පරමාණුක අගයන් තිබීම.</li>
+            <li><strong>දෙවන සාමාන්‍ය ආකාරය (2NF):</strong> 1NF හා අර්ධ පරායත්තතා (Partial Dependencies) ඉවත් කිරීම.</li>
+            <li><strong>තෙවන සාමාන්‍ය ආකාරය (3NF):</strong> 2NF හා සංක්‍රාන්ති පරායත්තතා (Transitive Dependencies) ඉවත් කිරීම.</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- ============= 3. ජාලකරණය සහ IP ලිපින =================== -->
+        <!-- ============================================================ -->
+
+        <h2>3. දත්ත සන්නිවේදනය හා ජාලකරණය – IP ලිපින</h2>
+        <div class="small-meta">ඒකකය 06 – දත්ත සන්නිවේදනය හා ජාලකරණය</div>
+
+        <h3>3.1 සංඥා (Signals) සහ සන්නිවේදන මාධ්‍ය</h3>
+        <ul>
+            <li><strong>ඇනලොග් සහ ඩිජිටල් සංඥා:</strong> ඇනලොග් – අඛණ්ඩ තරංග; ඩිජිටල් – විවික්ත (0,1) අගයන්.</li>
+            <li><strong>මාර්ගෝපදේශිත මාධ්‍ය (Guided Media):</strong> Twisted Pair, Coaxial Cable, Fiber Optics.</li>
+            <li><strong>මාර්ගෝපදේශ නොවන මාධ්‍ය (Unguided Media):</strong> ගුවන් විදුලි තරංග, මයික්‍රෝවේව්, චන්ද්‍රිකා.</li>
+        </ul>
+
+        <h3>3.2 ජාල ස්ථලක (Network Topologies)</h3>
+        <ul>
+            <li><strong>බස් (Bus):</strong> සියලු උපාංග එක් පොදු කේබලයකට සම්බන්ධ වේ.</li>
+            <li><strong>තාරකා (Star):</strong> සියලු උපාංග මධ්‍යම ස්විචයකට සම්බන්ධ වේ.</li>
+            <li><strong>වළල්ල (Ring):</strong> උපාංග වළල්ලක් ලෙස සම්බන්ධ වේ.</li>
+            <li><strong>ජාලක (Mesh):</strong> සෑම උපාංගයක්ම අනෙක් සියල්ලට සම්බන්ධ වේ.</li>
+        </ul>
+
+        <h3>3.3 ජාල උපාංග සහ ප්‍රොටෝකෝල</h3>
+        <ul>
+            <li><strong>MAC ලිපින:</strong> උපාංගයේ භෞතික ලිපිනය (දෘඩාංග මට්ටම).</li>
+            <li><strong>IP ලිපින:</strong> ජාලයේ උපාංගයක් හඳුනා ගැනීමට භාවිත කරන තාර්කික ලිපිනය.</li>
+            <li><strong>IPv4:</strong> බිටු 32 ක ලිපිනයක් (උදා: 192.168.1.1). බිටු 8 බැගින් වූ කොටස් 4 කින් සමන්විතය.</li>
+            <li><strong>IPv6:</strong> බිටු 128 ක ලිපිනයක් (උදා: 2001:0db8:85a3::8a2e:0370:7334).</li>
+            <li><strong>උපජාලකරණය (Subnetting):</strong> IP ලිපින පරාසයක් කුඩා උපජාල ලෙස බෙදීම.</li>
+            <li><strong>DHCP:</strong> ස්වයංක්‍රීයව IP ලිපින පැවරීම.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>TCP/IP ආකෘතියේ ස්තර:</strong><br>
+            1. <strong>යෙදුම් (Application)</strong> – HTTP, FTP, SMTP<br>
+            2. <strong>ප්‍රවාහන (Transport)</strong> – TCP, UDP<br>
+            3. <strong>අන්තර්ජාල (Internet)</strong> – IP, ICMP<br>
+            4. <strong>ජාල ප්‍රවේශ (Network Access)</strong> – Ethernet, Wi-Fi
+        </div>
+
+        <h3>3.4 වැදගත් ප්‍රොටෝකෝල</h3>
+        <ul>
+            <li><strong>TCP:</strong> විශ්වාසනීය, සම්බන්ධතා-නැඹුරු ප්‍රවාහන ප්‍රොටෝකෝලය.</li>
+            <li><strong>UDP:</strong> අවිශ්වාසනීය, සම්බන්ධතා-රහිත ප්‍රවාහන ප්‍රොටෝකෝලය.</li>
+            <li><strong>HTTP/HTTPS:</strong> වෙබ් පිටු සන්නිවේදනය සඳහා.</li>
+            <li><strong>DNS:</strong> වසම් නම් IP ලිපින බවට පරිවර්තනය කරයි.</li>
+            <li><strong>FTP:</strong> ගොනු හුවමාරුව සඳහා.</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- ============= 4. IoT (Internet of Things) =================== -->
+        <!-- ============================================================ -->
+
+        <h2>4. අන්තර්ජාලයේ දේවල් (Internet of Things – IoT)</h2>
+        <div class="small-meta">ඒකකය 11 – IoT පිළිබඳ මූලික සංකල්ප හා යෙදුම්</div>
+
+        <h3>4.1 IoT යනු කුමක්ද?</h3>
+        <p>IoT යනු භෞතික උපාංග, වාහන, ගෘහ උපකරණ සහ අනෙකුත් අයිතම සංවේදක, මෘදුකාංග සහ ජාල සම්බන්ධතා සමඟ සන්නද්ධ කර ඒවාට අන්තර්ජාලය හරහා දත්ත හුවමාරු කර ගැනීමට හැකියාව ලබා දීමේ සංකල්පයයි.</p>
+
+        <h3>4.2 IoT හි ප්‍රධාන අංග</h3>
+        <ul>
+            <li><strong>සංවේදක (Sensors):</strong> පරිසරයෙන් දත්ත රැස් කරයි (උදා: උෂ්ණත්වය, ආලෝකය, චලනය).</li>
+            <li><strong>ක්‍රියාකාරක (Actuators):</strong> භෞතික ක්‍රියා සිදු කරයි (උදා: මෝටරයක් කරකැවීම, ආලෝකයක් දැල්වීම).</li>
+            <li><strong>සම්බන්ධතාව (Connectivity):</strong> Wi-Fi, Bluetooth, Zigbee, LoRa, 5G ආදිය.</li>
+            <li><strong>දත්ත සැකසුම (Data Processing):</strong> රැස් කළ දත්ත විශ්ලේෂණය කර ක්‍රියාමාර්ග ගැනීම.</li>
+            <li><strong>අතුරු මුහුණත (User Interface):</strong> පරිශීලකයාට උපාංග පාලනය කිරීමට සහ දත්ත නැරඹීමට.</li>
+        </ul>
+
+        <h3>4.3 ක්ෂුද්‍ර පාලක පද්ධති (Microcontroller Systems)</h3>
+        <ul>
+            <li><strong>Arduino Board:</strong> විවෘත-මූලාශ්‍ර ක්ෂුද්‍ර පාලක පුවරුවක්. ඇනලොග්/ඩිජිටල් ආදාන, ඩිජිටල් ප්‍රතිදාන, USB, බල සැපයුම.</li>
+            <li><strong>Raspberry Pi:</strong> සම්පූර්ණ පරිගණකයක් වන කුඩා පුවරුවක්. Linux ධාවනය කළ හැක.</li>
+            <li><strong>IDE (Integrated Development Environment):</strong> කේත සංස්කරණය, සම්පාදනය සහ උඩුගත කිරීම සඳහා.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>සරල IoT යෙදුම්:</strong>
+            <ul>
+                <li>LED බල්බ දිලිසීම/නිවීම</li>
+                <li>ආලෝක සංවේදකය (LDR) මගින් ආලෝකය අනුව LED පාලනය</li>
+                <li>උෂ්ණත්ව සංවේදකය මගින් අධික උෂ්ණත්වයේ දී විදුලි පංකාව ක්‍රියාත්මක කිරීම</li>
+                <li>චුම්බක යතුරක් භාවිතයෙන් දොර විවෘත/වැසීම</li>
+            </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ============= 5. විද්‍යුත් වාණිජ්‍යය (E-Commerce) ========== -->
+        <!-- ============================================================ -->
+
+        <h2>5. විද්‍යුත් වාණිජ්‍යය (E-Commerce)</h2>
+        <div class="small-meta">ඒකකය 12 – ව්‍යාපාර තුළ ICT භාවිතය</div>
+
+        <h3>5.1 විද්‍යුත් වාණිජ්‍යය (E-Commerce) යනු කුමක්ද?</h3>
+        <p>විද්‍යුත් වාණිජ්‍යය යනු අන්තර්ජාලය හරහා භාණ්ඩ හා සේවා මිලදී ගැනීම, විකිණීම සහ හුවමාරු කිරීමයි. එය ඩිජිටල් ආර්ථිකයේ ප්‍රධාන අංගයකි.</p>
+
+        <h3>5.2 විද්‍යුත් වාණිජ්‍ය ආකෘති</h3>
+        <ul>
+            <li><strong>B2B (Business to Business):</strong> ව්‍යාපාරිකයන් අතර වෙළඳාම.</li>
+            <li><strong>B2C (Business to Consumer):</strong> ව්‍යාපාරිකයන්ගෙන් පාරිභෝගිකයන්ට වෙළඳාම.</li>
+            <li><strong>C2C (Consumer to Consumer):</strong> පාරිභෝගිකයන් අතර වෙළඳාම (උදා: eBay).</li>
+            <li><strong>C2B (Consumer to Business):</strong> පාරිභෝගිකයන් ව්‍යාපාරිකයන්ට සේවා සපයයි.</li>
+            <li><strong>G2C (Government to Consumer):</strong> රජය පාරිභෝගිකයන්ට සේවා සපයයි.</li>
+        </ul>
+
+        <h3>5.3 විද්‍යුත් වාණිජ්‍යයේ ප්‍රතිලාභ</h3>
+        <ul>
+            <li>පාරිභෝගිකයින්ට පහසුව – 24×7 සාප්පු සවාරි.</li>
+            <li>පුළුල් වෙළඳපල ප්‍රවේශය – ගෝලීය ප්‍රේක්ෂකයින් වෙත ළඟා වීම.</li>
+            <li>පිරිවැය අඩු කිරීම – භෞතික ගබඩා සහ කාර්ය මණ්ඩලය අවශ්‍ය නොවේ.</li>
+            <li>වේගවත් ගනුදෙනු – ක්ෂණික ගෙවීම් සහ තහවුරු කිරීම්.</li>
+        </ul>
+
+        <h3>5.4 විද්‍යුත් වාණිජ්‍යයේ අභියෝග</h3>
+        <ul>
+            <li>ආරක්ෂාව – දත්ත කඩකිරීම්, වංචා.</li>
+            <li>පෞද්ගලිකත්වය – පාරිභෝගික තොරතුරු ආරක්ෂා කිරීම.</li>
+            <li>නීතිමය ගැටළු – බදු, රෙගුලාසි.</li>
+            <li>ඩිජිටල් බෙදීම – සමහර ප්‍රදේශවල අන්තර්ජාල ප්‍රවේශය නොමැතිකම.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <strong>ගෙවීම් ද්වාර (Payment Gateways):</strong> PayPal, Stripe, ශ්‍රී ලංකාවේ ඩිජිටල් ගෙවීම් පද්ධති. ආරක්ෂිත ගනුදෙනු සඳහා සංකේතනය (Encryption) සහ ඩිජිටල් අත්සන් භාවිතා කෙරේ.
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ============= 6. වෙබ් සංවර්ධනය (Web Development) ========= -->
+        <!-- ============================================================ -->
+
+        <h2>6. වෙබ් සංවර්ධනය (Web Development)</h2>
+        <div class="small-meta">ඒකකය 10 – වෙබ් අඩවි සංවර්ධනය (HTML5, CSS, PHP, MySQL)</div>
+
+        <h3>6.1 වෙබ් පිටු සහ වෙබ් අඩවි</h3>
+        <p>වෙබ් අඩවියක් යනු අන්තර්ජාලය හරහා ප්‍රවේශ විය හැකි අන්තර් සම්බන්ධිත වෙබ් පිටු සමූහයකි. වෙබ් පිටුවක් යනු HTML, CSS සහ JavaScript වැනි තාක්ෂණයන් භාවිතයෙන් නිර්මාණය කරන ලද ලේඛනයකි.</p>
+
+        <h3>6.2 HTML (HyperText Markup Language)</h3>
+        <ul>
+            <li>වෙබ් පිටුවල ව්‍යුහය නිර්වචනය කරයි.</li>
+            <li>මූලික ව්‍යුහය: <strong>&lt;html&gt;, &lt;head&gt;, &lt;title&gt;, &lt;body&gt;</strong></li>
+            <li><strong>පාඨ හැඩතල ගැන්වීම:</strong> &lt;h1&gt;…&lt;h6&gt;, &lt;p&gt;, &lt;br&gt;, &lt;b&gt;, &lt;i&gt;, &lt;u&gt;</li>
+            <li><strong>සබැඳි (Links):</strong> &lt;a href="url"&gt; සබැඳිය &lt;/a&gt;</li>
+            <li><strong>රූප (Images):</strong> &lt;img src="image.jpg" alt="විස්තරය"&gt;</li>
+            <li><strong>වගු (Tables):</strong> &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;</li>
+            <li><strong>ලයිස්තු (Lists):</strong> &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</li>
+            <li><strong>පෝරම (Forms):</strong> &lt;form&gt;, &lt;input&gt;, &lt;select&gt;, &lt;textarea&gt;, &lt;button&gt;</li>
+        </ul>
+
+        <div class="code-block">
+            &lt;html&gt;
+            &lt;head&gt;&lt;title&gt;මගේ පිටුව&lt;/title&gt;&lt;/head&gt;
+            &lt;body&gt;
+            &lt;h1&gt;ආයුබෝවන්!&lt;/h1&gt;
+            &lt;p&gt;මෙය මගේ පළමු වෙබ් පිටුවයි.&lt;/p&gt;
+            &lt;a href="https://www.google.com"&gt;ගූගල් වෙත යන්න&lt;/a&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+        </div>
+
+        <h3>6.3 CSS (Cascading Style Sheets)</h3>
+        <ul>
+            <li>වෙබ් පිටුවල පෙනුම (වර්ණ, පිරිසැලසුම, අකුරු) පාලනය කරයි.</li>
+            <li><strong>CSS ඇතුළත් කිරීමේ ක්‍රම:</strong> Inline, Internal ( &lt;style&gt; ), External ( &lt;link&gt; ).</li>
+            <li><strong>තෝරා ගැනීම් (Selectors):</strong> Element, ID (#id), Class (.class), Group.</li>
+            <li><strong>වැදගත් ගුණාංග:</strong> background-color, color, font-size, margin, padding, border, text-align.</li>
+        </ul>
+
+        <div class="code-block">
+            /* CSS උදාහරණය */
+            body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            }
+            h1 {
+            color: #1a4a6e;
+            text-align: center;
+            }
+            .highlight {
+            background-color: #e1edfa;
+            padding: 10px;
+            border-radius: 6px;
+            }
+        </div>
+
+        <h3>6.4 PHP සහ MySQL – ගතික වෙබ් පිටු</h3>
+        <ul>
+            <li><strong>PHP:</strong> සේවාදායක-පාර්ශ්ව ස්ක්‍රිප්ට් භාෂාවක්. වෙබ් පිටු ගතික කිරීමට භාවිත කරයි.</li>
+            <li><strong>MySQL:</strong> දත්ත සමුදා කළමනාකරණ පද්ධතියක් (RDBMS).</li>
+            <li>PHP මගින් MySQL දත්ත සමුදායට සම්බන්ධ වී දත්ත ඇතුළත් කිරීම, යාවත්කාලීන කිරීම, මකා දැමීම සහ තෝරා ගැනීම කළ හැක.</li>
+            <li><strong>පෝරම දත්ත හැසිරවීම:</strong> $_GET සහ $_POST සුපිරි ගෝලීය විචල්‍යයන්.</li>
+        </ul>
+
+        <div class="code-block">
+            &lt;?php
+            // PHP සහ MySQL සම්බන්ධතා උදාහරණය
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "myDB";
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            if ($conn-&gt;connect_error) {
+            die("සම්බන්ධතාව අසාර්ථකයි: " . $conn-&gt;connect_error);
+            }
+
+            $sql = "SELECT id, නම, ඊමේල් FROM පරිශීලක";
+            $result = $conn-&gt;query($sql);
+
+            while($row = $result-&gt;fetch_assoc()) {
+            echo "id: " . $row["id"]. " - නම: " . $row["නම"]. " - ඊමේල්: " . $row["ඊමේල්"]. "&lt;br&gt;";
+            }
+            $conn-&gt;close();
+            ?&gt;
+        </div>
+
+        <h3>6.5 වෙබ් අඩවි ප්‍රසිද්ධ කිරීම (Web Hosting)</h3>
+        <ul>
+            <li>වෙබ් අඩවියක් අන්තර්ජාලයේ ප්‍රසිද්ධ කිරීම සඳහා වෙබ් හෝස්ටින් සේවාවක් භාවිත කරයි.</li>
+            <li>නොමිලේ හෝස්ටින් සේවා (උදා: 000webhost, InfinityFree) හෝ ගෙවුම් හෝස්ටින් සේවා.</li>
+            <li>වසම් නමක් (Domain Name) ලියාපදිංචි කර ගැනීම.</li>
+            <li>වෙබ් අඩවියේ කාර්ය සාධනයට බලපාන සාධක: සේවාදායක වේගය, පිටු ප්‍රමාණය, ජාල ප්‍රමාදය.</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- ============= 7. Python ක්‍රමලේඛනය ======================= -->
+        <!-- ============================================================ -->
+
+        <h2>7. Python ක්‍රමලේඛනය (Python Programming)</h2>
+        <div class="small-meta">ඒකකය 09 – ක්‍රමලේඛනය (Python භාෂාව භාවිතයෙන්)</div>
+
+        <h3>7.1 Python යනු කුමක්ද?</h3>
+        <p>Python යනු ඉහළ මට්ටමේ, අර්ථකථනය කළ, සාමාන්‍ය-අරමුණු ක්‍රමලේඛන භාෂාවකි. එය සරල, කියවීමට පහසු වාක්‍ය ඛණ්ඩයක් සහිත වන අතර විවිධ ක්‍ෂේත්‍රවල භාවිත වේ.</p>
+
+        <h3>7.2 Python හි මූලික සංකල්ප</h3>
+        <ul>
+            <li><strong>විචල්‍ය (Variables):</strong> දත්ත ගබඩා කිරීමට භාවිත කරයි. (උදා: x = 5, name = "අමරා")</li>
+            <li><strong>දත්ත වර්ග (Data Types):</strong> int, float, str, bool, list, tuple, dict.</li>
+            <li><strong>කාරක (Operators):</strong> ගණිතමය (+, -, *, /), සම්බන්ධක (&lt;, &gt;, ==, !=), තාර්කික (and, or, not).</li>
+            <li><strong>පාලන ව්‍යුහ (Control Structures):</strong>
+                <ul>
+                    <li><strong>තීරණ (Selection):</strong> if, elif, else</li>
+                    <li><strong>පුනරාවර්තන (Repetition):</strong> for, while loops</li>
+                </ul>
+            </li>
+            <li><strong>ශ්‍රිත (Functions):</strong> නැවත භාවිත කළ හැකි කේත කොටස්. def යතුරු පදයෙන් අර්ථ දක්වයි.</li>
+        </ul>
+
+        <div class="code-block">
+            # Python මූලික උදාහරණ
+            # විචල්‍ය සහ දත්ත වර්ග
+            name = "සමන්"
+            age = 20
+            height = 5.8
+            is_student = True
+
+            # පාලන ව්‍යුහ
+            if age &gt;= 18:
+            print(name + " වැඩිහිටියෙකි.")
+            else:
+            print(name + " බාල වයස්කාරයෙකි.")
+
+            # ශ්‍රිතයක්
+            def greet(person):
+            return "ආයුබෝවන්, " + person + "!"
+
+            print(greet(name))
+        </div>
+
+        <h3>7.3 දත්ත ව්‍යුහ (Data Structures)</h3>
+        <ul>
+            <li><strong>ලැයිස්තු (Lists):</strong> වෙනස් කළ හැකි, අනුක්‍රමික දත්ත එකතුවක්. (උදා: fruits = ["apple", "banana", "orange"])</li>
+            <li><strong>ටියුපල් (Tuples):</strong> වෙනස් කළ නොහැකි අනුක්‍රමයක්. (උදා: colors = ("red", "green", "blue"))</li>
+            <li><strong>ශබ්දකෝෂ (Dictionaries):</strong> යතුරු-අගය යුගල ගබඩා කරයි. (උදා: student = {"name": "නිෂා", "age": 22})</li>
+        </ul>
+
+        <h3>7.4 ගොනු හැසිරවීම (File Handling)</h3>
+        <ul>
+            <li>ගොනු විවෘත කිරීම: open("filename", "mode") – "r" කියවීම, "w" ලිවීම, "a" එකතු කිරීම.</li>
+            <li>ගොනුවකින් කියවීම: read(), readline(), readlines()</li>
+            <li>ගොනුවකට ලිවීම: write()</li>
+            <li>ගොනු වසා දැමීම: close()</li>
+        </ul>
+
+        <div class="code-block">
+            # ගොනු හැසිරවීමේ උදාහරණය
+            # ගොනුවකට ලිවීම
+            file = open("data.txt", "w")
+            file.write("මෙය පළමු පේළියයි.\n")
+            file.write("මෙය දෙවන පේළියයි.")
+            file.close()
+
+            # ගොනුවකින් කියවීම
+            file = open("data.txt", "r")
+            content = file.read()
+            print(content)
+            file.close()
+        </div>
+
+        <h3>7.5 දත්ත සමුදාය සමඟ Python</h3>
+        <ul>
+            <li>Python මගින් MySQL, SQLite, PostgreSQL වැනි දත්ත සමුදා සමඟ සම්බන්ධ විය හැක.</li>
+            <li>MySQL සමඟ සම්බන්ධ වීමට <strong>mysql-connector-python</strong> හෝ <strong>PyMySQL</strong> භාවිත කරයි.</li>
+            <li>SQL විමසුම් ක්‍රියාත්මක කිරීමට cursor.execute() භාවිත කරයි.</li>
+        </ul>
+
+        <div class="code-block">
+            # MySQL සමඟ Python සම්බන්ධතා උදාහරණය
+            import mysql.connector
+
+            conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="myDB"
+            )
+
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM පරිශීලක")
+
+            for row in cursor.fetchall():
+            print(row)
+
+            conn.close()
+        </div>
+
+        <h3>7.6 සෙවීම් සහ වර්ග කිරීමේ ඇල්ගොරිතම</h3>
+        <ul>
+            <li><strong>අනුක්‍රමික සෙවීම (Sequential Search):</strong> ලැයිස්තුවක් ආරම්භයේ සිට අවසානය දක්වා සොයයි.</li>
+            <li><strong>බුබුලු වර්ග කිරීම (Bubble Sort):</strong> යාබද මූලද්‍රව්‍ය සංසන්දනය කර හුවමාරු කරයි.</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- ============= 8. අමතර සටහන් – ගුරු මාර්ගෝපදේශය ========== -->
+        <!-- ============================================================ -->
+
+        <h2>8. ගුරු මාර්ගෝපදේශයට අනුව වැදගත් කරුණු</h2>
+
+        <ul>
+            <li><strong>ස්වයං ඉගෙනීම:</strong> ශිෂ්‍යයන් ස්වයං ඉගෙනීම සඳහා දිරිමත් කළ යුතු අතර, ගුරුවරයා මග පෙන්වීම සපයයි.</li>
+            <li><strong>ප්‍රායෝගික සැසි:</strong> න්‍යායාත්මක දැනුම ප්‍රායෝගිකව යෙදීමට පරිගණක විද්‍යාගාර සැසි අත්‍යවශ්‍ය වේ.</li>
+            <li><strong>තක්සේරුව:</strong> අඛණ්ඩ තක්සේරුව (Formative Assessment) සහ අවසාන තක්සේරුව (Summative Assessment) යන දෙකම වැදගත් වේ.</li>
+            <li><strong>ව්‍යාපෘතිය (Project):</strong> 13 වන ශ්‍රේණියේ දී පුද්ගලික ව්‍යාපෘතියක් සම්පූර්ණ කළ යුතු අතර එයට පැය 30 ක් වෙන් කර ඇත.</li>
+            <li><strong>සම්පත්:</strong> ජාතික අධ්‍යාපන ආයතනයේ වෙබ් අඩවිය (www.nie.lk) මගින් අමතර සම්පත් ලබා ගත හැක.</li>
+            <li><strong>නව ප්‍රවණතා:</strong> ක්‍වොන්ටම් පරිගණනය, ජෛව-ආනුභාවික පරිගණනය, වලාකුළු පරිගණනය, යන්ත්‍ර ඉගෙනීම යනාදිය පිළිබඳ දැනුවත් වීම වැදගත්.</li>
+        </ul>
+
+        <!-- ============================================================ -->
+        <!-- ============= 9. අවසාන සාරාංශය ========================= -->
+        <!-- ============================================================ -->
+
+        <div class="section-spacer"></div>
+        <h2 style="background:#d4e6f7; border-left-color:#2a6b9c;">සාරාංශය</h2>
+
+        <p>මෙම සටහන් මගින් උසස් පෙළ තොරතුරු හා සන්නිවේදන තාක්ෂණය විෂයයේ ප්‍රධාන ඒකක හතක් ආවරණය කරයි:</p>
+        <ul>
+            <li><strong>පද්ධති කළමනාකරණය (OS):</strong> මෙහෙයුම් පද්ධති, ක්‍රියාවලි කළමනාකරණය, මතක කළමනාකරණය, ගොනු පද්ධති.</li>
+            <li><strong>දත්ත සමුදාය:</strong> ආකෘති, ER රූප සටහන්, SQL, සාමාන්‍යකරණය.</li>
+            <li><strong>ජාලකරණය සහ IP:</strong> සංඥා, මාධ්‍ය, ජාල ස්ථලක, TCP/IP, IP ලිපින, උපජාලකරණය.</li>
+            <li><strong>IoT:</strong> සංවේදක, ක්‍රියාකාරක, ක්ෂුද්‍ර පාලක, යෙදුම්.</li>
+            <li><strong>විද්‍යුත් වාණිජ්‍යය:</strong> ආකෘති, ප්‍රතිලාභ, අභියෝග, ගෙවීම් ද්වාර.</li>
+            <li><strong>වෙබ් සංවර්ධනය:</strong> HTML, CSS, PHP, MySQL, හෝස්ටින්.</li>
+            <li><strong>Python:</strong> මූලික සංකල්ප, දත්ත ව්‍යුහ, ගොනු හැසිරවීම, දත්ත සමුදා සම්බන්ධතා.</li>
+        </ul>
+
+        <p style="margin-top:22px; color:#1a4a6e; border-top:1px solid #c8def5; padding-top:16px; text-align:center;">
+            <span class="topic-badge">📘 සියලු ඒකක සඳහා විස්තීර්ණ සටහන්</span>
+            <span class="topic-badge">📌 ගුරු මාර්ගෝපදේශයට අනුකූල</span>
+            <span class="topic-badge">✅ ප්‍රායෝගික උදාහරණ සහිත</span>
+        </p>
+
+        <p style="font-size:14px; color:#3d6b8f; text-align:center; margin-top:18px;">
+            <em>ජාතික අධ්‍යාපන ආයතනය – www.nie.lk  |  2017 සංශෝධිත විෂය නිර්දේශය මත පදනම්ව</em>
+        </p>
+
+    </div>
+    <!-- end paper -->
+</body>
+</html>
